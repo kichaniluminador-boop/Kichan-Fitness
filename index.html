@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Kichan Fitness">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>KICHAN FITNESS | Entrena con Sol</title>
 <style>
 :root{--bg:#0b0b0a;--surface:#151513;--surface2:#1d1c19;--surface3:#25231e;--line:#39362f;--gold:#d7b779;--gold2:#f0d9a8;--white:#f5f1e9;--muted:#a8a196;--green:#9bc7a3;--red:#d58c82;--shadow:0 18px 55px #0008}
@@ -40,7 +40,7 @@ footer{text-align:center;color:#716c62;font-size:10px;padding:25px 0}
 <main>
 <section id="inicio" class="page active">
 <div class="hero"><div class="hero-copy"><div class="eyebrow">TU NUEVO COMIENZO</div><h1>Fuerte.<br>Constante.<br>A tu ritmo.</h1><p>Un programa progresivo de fuerza e hipertrofia, diseñado con tus mancuernas y adaptado para cuidar tu rodilla.</p><button class="btn" onclick="go('plan')">VER MI ENTRENAMIENTO</button></div>
-<div class="hero-visual"><img src="assets/sol.png" alt="Sol, entrenadora de Kichan Fitness"></div></div>
+<div class="hero-visual"><img src="sol.png" alt="Sol, entrenadora de Kichan Fitness"></div></div>
 <div class="metrics"><div class="metric"><b>08</b><span>SEMANAS</span></div><div class="metric"><b>03</b><span>DÍAS / SEMANA</span></div><div class="metric"><b>30–40′</b><span>POR SESIÓN</span></div></div>
 <div class="section"><div class="section-head"><h2>Tu semana</h2><span class="status" id="weekBadge">SEMANA 1</span></div><div class="week-grid"><div class="day-card"><b>LUNES · A</b><strong>Pecho y hombros</strong><small>Tríceps · abdomen</small></div><div class="day-card"><b>MIÉRCOLES · B</b><strong>Espalda y brazos</strong><small>Bíceps · core</small></div><div class="day-card"><b>VIERNES · C</b><strong>Cuerpo completo</strong><small>Glúteos · piernas · core</small></div></div></div>
 <div class="section card"><div class="section-head"><h2>Progreso del programa</h2><b id="homeCount" style="color:var(--gold2)">0 / 24</b></div><div class="progress"><i id="homeBar"></i></div><p>Registra cada sesión completada y revisa tu evolución.</p></div>
@@ -61,7 +61,7 @@ footer{text-align:center;color:#716c62;font-size:10px;padding:25px 0}
 <section id="nutricion" class="page">
 <div class="eyebrow">ALIMENTACIÓN PARA CRECER</div><h1>Nutrición</h1><p>Una guía sencilla para acompañar la hipertrofia, con alimentos cotidianos.</p>
 <div class="metrics"><div class="metric"><b>130–150 g</b><span>PROTEÍNA / DÍA</span></div><div class="metric"><b>2–2,5 L</b><span>AGUA ORIENTATIVA</span></div><div class="metric"><b>7–9 h</b><span>SUEÑO</span></div></div>
-<div class="card"><h2>Menú de ejemplo</h2><div class="meal"><img class="meal-photo" src="assets/breakfast.png" alt="Desayuno"><div><b>Desayuno</b><small><br>Huevos, avena y fruta.</small></div></div><div class="meal"><img class="meal-photo" src="assets/lunch.png" alt="Almuerzo"><div><b>Almuerzo</b><small><br>Pollo, arroz y verduras.</small></div></div><div class="meal"><img class="meal-photo" src="assets/snack.png" alt="Colación"><div><b>Colación</b><small><br>Yogur alto en proteínas y frutos secos.</small></div></div><div class="meal"><img class="meal-photo" src="assets/dinner.png" alt="Cena"><div><b>Cena</b><small><br>Pescado, papas y ensalada.</small></div></div></div>
+<div class="card"><h2>Menú de ejemplo</h2><div class="meal"><img class="meal-photo" src="breakfast.png" alt="Desayuno"><div><b>Desayuno</b><small><br>Huevos, avena y fruta.</small></div></div><div class="meal"><img class="meal-photo" src="lunch.png" alt="Almuerzo"><div><b>Almuerzo</b><small><br>Pollo, arroz y verduras.</small></div></div><div class="meal"><img class="meal-photo" src="snack.png" alt="Colación"><div><b>Colación</b><small><br>Yogur alto en proteínas y frutos secos.</small></div></div><div class="meal"><img class="meal-photo" src="dinner.png" alt="Cena"><div><b>Cena</b><small><br>Pescado, papas y ensalada.</small></div></div></div>
 <div class="card section"><h2>Registrar alimentación</h2><label class="field">Comida o alimento</label><input id="foodName" placeholder="Ej. 2 huevos y yogur"><label class="field">Proteína aproximada (gramos)</label><input id="foodProtein" type="number" min="0" placeholder="Ej. 25"><button class="btn block" onclick="addFood()">AÑADIR AL REGISTRO</button><div id="foodLog"></div></div>
 </section>
 <section id="progreso" class="page">
@@ -99,7 +99,7 @@ const KEY="kichanFitnessProV2";let state=JSON.parse(localStorage.getItem(KEY)||'
 const cfg=()=>week<=2?{sets:2,reps:"10–12",label:"ADAPTACIÓN"}:week<=4?{sets:3,reps:"10–12",label:"PROGRESIÓN"}:week<=6?{sets:3,reps:"12–15",label:"HIPERTROFIA"}:{sets:3,reps:"15–18",label:"CONSOLIDACIÓN"};
 function persist(){localStorage.setItem(KEY,JSON.stringify(state));refresh()}
 function go(id,btn){document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");else [...document.querySelectorAll(".nav button")].find(b=>b.getAttribute("onclick").includes("'"+id+"'"))?.classList.add("active");window.scrollTo(0,0)}
-function svgArt(type){if(type==="push")return `<img src="assets/incline.png" alt="Referencia de flexión inclinada">`;if(type==="press")return `<img src="assets/press.png" alt="Referencia de press con mancuernas">`;let common=`<defs><linearGradient id="skinA" x2="1"><stop stop-color="#a96d4c"/><stop offset=".5" stop-color="#edbd94"/><stop offset="1" stop-color="#b77c5b"/></linearGradient></defs>`;let shapes={
+function svgArt(type){if(type==="push")return `<img src="incline.png" alt="Referencia de flexión inclinada">`;if(type==="press")return `<img src="press.png" alt="Referencia de press con mancuernas">`;let common=`<defs><linearGradient id="skinA" x2="1"><stop stop-color="#a96d4c"/><stop offset=".5" stop-color="#edbd94"/><stop offset="1" stop-color="#b77c5b"/></linearGradient></defs>`;let shapes={
 push:`<path d="M18 82H91" stroke="#8d7958" stroke-width="5"/><path d="M29 70L42 56L68 56L81 70" stroke="url(#skinA)" stroke-width="10" stroke-linecap="round" fill="none"/><path d="M42 56L34 78M68 56L77 78" stroke="url(#skinA)" stroke-width="8" stroke-linecap="round"/><circle cx="74" cy="48" r="7" fill="#dca77f"/>`,
 press:`<circle cx="50" cy="26" r="7" fill="#dca77f"/><path d="M50 34V64M50 44L24 25M50 44L76 25M50 64L32 88M50 64L68 88" stroke="url(#skinA)" stroke-width="8" stroke-linecap="round"/><path d="M17 19V31M83 19V31" stroke="#d7b779" stroke-width="5"/>`,
 raise:`<circle cx="50" cy="18" r="7" fill="#dca77f"/><path d="M50 27V66M50 39L15 22M50 39L85 22M50 66L34 91M50 66L66 91" stroke="url(#skinA)" stroke-width="8" stroke-linecap="round"/>`,
